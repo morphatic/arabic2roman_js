@@ -1,5 +1,50 @@
-describe('An Arabic to Roman numberal converter', () => {
+/**
+ * Tests for JavaScript version of Arabic to Roman Numeral Converter.
+ */
+
+const { convert } = require('../arabic2roman')
+
+describe('An Arabic to Roman numeral converter', () => {
+
   it('has a smoke test', () => {
     expect(true).toBe(true)
+  })
+
+  it('can convert 1 to "I"', () => {
+    expect(convert(1)).toBe('I')
+  })
+
+  it('can convert 2 to "II"', () => {
+    expect(convert(2)).toBe('II')
+  })
+
+  it('returns I, II, or III if remainder of division by 5 is 1 to 3', () => {
+    expect(convert(1).substr(-1)).toBe('I')
+    expect(convert(2).substr(-2)).toBe('II')
+    expect(convert(3).substr(-3)).toBe('III')
+    expect(convert(6).substr(-1)).toBe('I')
+    expect(convert(7).substr(-2)).toBe('II')
+    expect(convert(8).substr(-3)).toBe('III')
+    expect(convert(11).substr(-1)).toBe('I')
+    expect(convert(12).substr(-2)).toBe('II')
+    expect(convert(13).substr(-3)).toBe('III')
+  })
+
+  it('returns IV if num % 5 is 4 and (num + 1) % 10 is not 0', () => {
+    expect(convert(4).substr(-2)).toBe('IV')
+    expect(convert(9).substr(-2)).not.toBe('IV')
+    expect(convert(14).substr(-2)).toBe('IV')
+    expect(convert(19).substr(-2)).not.toBe('IV')
+    expect(convert(124).substr(-2)).toBe('IV')
+    expect(convert(129).substr(-2)).not.toBe('IV')
+  })
+
+  it('returns IX if num % 5 is 4 and (num + 1) % 10 is 0', () => {
+    expect(convert(4).substr(-2)).not.toBe('IX')
+    expect(convert(9).substr(-2)).toBe('IX')
+    expect(convert(14).substr(-2)).not.toBe('IX')
+    expect(convert(19).substr(-2)).toBe('IX')
+    expect(convert(124).substr(-2)).not.toBe('IX')
+    expect(convert(129).substr(-2)).toBe('IX')
   })
 })
