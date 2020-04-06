@@ -12,17 +12,22 @@ const convert = num => {
   const mod5 = num % 5
   // is mod5 between 1 and 3?
   if (mod5 >= 1 && mod5 <= 3) {
-    // yes, so add I, II, or III to roman
+    // is this a 6, 7, or 8 scenario
+    if ((num - mod5) % 10 !== 0) {
+      // yes, so add roman numeral V before the I, II, or III
+      roman += 'V'
+    }
+    // add I, II, or III to roman
     for (let i = 0; i < mod5; i++) {
       roman += 'I'
     }
-  } else if (mod5 === 4 && (num + 1) % 10 !== 0) {
-    // add IV to the end of the number
-    roman += 'IV'
-  } else if (mod5 === 4 && (num + 1) % 10 === 0) {
-    // add IX to the end of the number
-    roman += 'IX'
+  } else if (mod5 === 4) {
+    // is mod5 4?
+    roman += (num + 1) % 10 !== 0 ? 'IV' : 'IX'
+  } else if (mod5 === 0) {
+    roman += num % 10 !== 0 ? 'V' : 'X'
   }
+
   // return our parsed roman numeral
   return roman
 }

@@ -47,4 +47,29 @@ describe('An Arabic to Roman numeral converter', () => {
     expect(convert(124).substr(-2)).not.toBe('IX')
     expect(convert(129).substr(-2)).toBe('IX')
   })
+
+  it('returns V if num % 5 is 0 and num is NOT a multiple of 10', () => {
+    expect(convert( 5).substr(-1)).toBe('V')
+    expect(convert(15).substr(-1)).toBe('V')
+    expect(convert(25).substr(-1)).toBe('V')
+  })
+
+  it('returns X if num % 5 is 0 and num IS a multiple of 10', () => {
+    expect(convert(10).substr(-1)).toBe('X')
+    expect(convert(20).substr(-1)).toBe('X')
+    expect(convert(30).substr(-1)).toBe('X')
+  })
+
+  it('can correctly convert numbers 1 to 10', () => {
+    expect(convert(1)).toBe('I')
+    expect(convert(2)).toBe('II')
+    expect(convert(3)).toBe('III')
+    expect(convert(4)).toBe('IV')
+    expect(convert(5)).toBe('V')
+    expect(convert(6)).toBe('VI')
+    expect(convert(7)).toBe('VII')
+    expect(convert(8)).toBe('VIII')
+    expect(convert(9)).toBe('IX')
+    expect(convert(10)).toBe('X')
+  })
 })
