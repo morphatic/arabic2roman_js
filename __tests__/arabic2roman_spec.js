@@ -72,4 +72,17 @@ describe('An Arabic to Roman numeral converter', () => {
     expect(convert(9)).toBe('IX')
     expect(convert(10)).toBe('X')
   })
+
+  it('can correctly convert numbers 11 to 20', () => {
+    expect(convert(11)).toBe('XI')
+    expect(convert(12)).toBe('XII')
+    expect(convert(13)).toBe('XIII')
+    expect(convert(14)).toBe('XIV')
+    expect(convert(15)).toBe('XV')
+    expect(convert(16)).toBe('XVI')
+    expect(convert(17)).toBe('XVII')
+    expect(convert(18)).toBe('XVIII')
+    expect(convert(19)).toBe('XIX')
+    expect(convert(20)).toBe('XX')
+  })
 })
